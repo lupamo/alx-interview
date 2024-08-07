@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""locked boxes that can be opened"""
+
 
 def minOperations(n):
     """
