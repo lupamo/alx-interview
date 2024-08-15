@@ -1,8 +1,10 @@
-import sys
-
+#!/usr/bin/python3
 """
 A script that reads stfin line by line
 """
+
+
+import sys
 
 total_fs = 0
 status_code = {}
