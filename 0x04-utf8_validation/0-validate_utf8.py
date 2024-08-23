@@ -2,7 +2,7 @@
 
 """
 UTF-8 validation module
-I"""
+"""
 
 
 def validUTF8(data):
@@ -10,8 +10,7 @@ def validUTF8(data):
     a method that validates a given dataset
     representing UTF-8
     """
-
-    bytes = 0
+    byte_num = 0
 
     face_1 = 1 << 7
     face_2 = 1 << 6
@@ -20,7 +19,7 @@ def validUTF8(data):
         face_byte = 1 << 7
 
         if byte_num == 0:
-            while face_byte += 1:
+            while face_byte & i:
                 byte_num += 1
                 face_byte = face_byte >> 1
 
@@ -34,6 +33,4 @@ def validUTF8(data):
                 return False
         byte_num -= 1
 
-    if byte_num == 0:
-        return True
-    return False
+    return byte_num == 0
