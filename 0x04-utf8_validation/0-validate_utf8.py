@@ -2,17 +2,7 @@
 
 """
 UTF-8 validation module
-"""
-
-
-def get_bits(num):
-    """returns leading sets of bits"""
-    set_bits = 0
-    lender = 1 << 7
-    while lender & num:
-        set_bits += 1
-        lender = lender >> 1
-    return set_bits
+I"""
 
 
 def validUTF8(data):
@@ -21,17 +11,29 @@ def validUTF8(data):
     representing UTF-8
     """
 
-    cnt = 0
-    for i in range(len(data)):
-        if cnt == 0:
-            cnt = get_bits(data[i])
-            if cnt == 0:
+    bytes = 0
+
+    face_1 = 1 << 7
+    face_2 = 1 << 6
+
+    for i in data:
+        face_byte = 1 << 7
+
+        if byte_num == 0:
+            while face_byte += 1:
+                byte_num += 1
+                face_byte = face_byte >> 1
+
+            if byte_num == 0:
                 continue
-            if cnt == 1 or cnt > 4:
+
+            if byte_num == 1 or byte_num > 4:
                 return False
-            
-            else:
-                if not (data[i] & (1 << 7) and not (data[i] & (1 << 6))):
-                    return False
-            cnt -= 1
-    return cnt == 0
+        else:
+            if not (i & face_1 and not (1 & face_2)):
+                return False
+        byte_num -= 1
+
+    if byte_num == 0:
+        return True
+    return False
