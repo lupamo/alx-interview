@@ -29,7 +29,7 @@ def validUTF8(data):
                 continue
             if cnt == 1 or cnt > 4:
                 return False
-            cnt = cnt - 1
+            
             else:
                 if not (data[i] & (1 << 7) and not (data[i] & (1 << 6))):
                     return False
