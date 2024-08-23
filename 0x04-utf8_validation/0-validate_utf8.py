@@ -32,5 +32,6 @@ def validUTF8(data):
             if not (i & face_1 and not (1 & face_2)):
                 return False
         byte_num -= 1
-
-    return byte_num == 0
+    if byte_num == 0:
+        return True
+    return False
