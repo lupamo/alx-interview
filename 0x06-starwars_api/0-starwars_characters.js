@@ -1,8 +1,7 @@
 #!/usr/bin/node
 
-/** A script that displays prints the title of a
+/** A script that displays prints the charcters of a
  * Star Wars **/
-
 function getRequest(url) {
     const request = require('request');
     return new Promise((resolve, reject) => {
@@ -16,6 +15,9 @@ function getRequest(url) {
     });
 }
 
+/** An async function that uses the api of 
+ * star wars movie to get
+ * Star Wars characters**/
 async function getCharacters() {
     const args = process.argv;
 
