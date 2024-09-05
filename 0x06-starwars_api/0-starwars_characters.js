@@ -1,4 +1,9 @@
+#!/usr/bin/node
+/** A script that displays prints the title of a
+ * Star Wars **/
+
 const request = require('request');
+
 
 const movieId = process.argv[2];
 
@@ -10,6 +15,7 @@ if (!movieId) {
 const url = `https://swapi.dev/api/films/${movieId}/`;
 
 request(url, (error, response, body) => {
+
     if (error) {
         console.error('Error fetching the movie:', error);
         process.exit(1);
