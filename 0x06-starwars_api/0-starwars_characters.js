@@ -1,33 +1,45 @@
 #!/usr/bin/node
+
 /** A script that displays prints the title of a
  * Star Wars **/
 
-const request = require('request');
-
-
-const movieId = process.argv[2];
-
-if (!movieId) {
-    console.log('Not a correct movie Id');
-    process.exit(1);
+function getRequest(url) {
+    const request = require('request');
+    return new Promise((resolve, reject) => {
+        request.get(url, (error, response, body) => {
+            if (error) {
+                reject(error);  
+            } else {
+                resolve(JSON.parse(body));
+            }
+        });
+    });
 }
 
-const url = `https://swapi.dev/api/films/${movieId}/`;
-
 async function getCharacters() {
-    try {
-        const response = await requestPromise(url);
-        const data = JSON.parse(response.body);
-        const characters = data.characters;
+    const args = process.argv;
 
-        for (const characterUrl of characters) {
-            const characterResponse = await requestPromise(characterUrl);
-            const characterData = JSON.parse(characterResponse.body);
-            console.log(characterData.name);
+    if (args.length < 3) {
+        console.log('Please provide a movie ID');
+        return;
+    }
+
+    const movieUrl = 'https://swapi-api.alx-tools.com/api/films/' + args[2];
+
+    try {
+        const movie = await getRequest(movieUrl);
+
+        if (movie.characters === undefined) {
+            console.log('No characters found for this movie.');
+            return;
+        }
+
+        for (const char of movie.characters) {
+            const character = await getRequest(char);
+            console.log(character.name);
         }
     } catch (error) {
         console.error('Error fetching data:', error.message);
-        process.exit(1);
     }
 }
 
