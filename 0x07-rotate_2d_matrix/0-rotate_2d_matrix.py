@@ -11,9 +11,9 @@ def rotate_2d_matrix(matrix):
     length = len(matrix)
 
     for j in range(int(length/2)):
-        y = (n - j - 1)
+        y = (length - j - 1)
         for i in range(j, y):
-            x = (n - 1 - i)
+            x = (length - 1 - i)
             temp = matrix[j][i]
             matrix[j][i] = matrix[y][j]
             matrix[x][j] = matrix[y][x]
